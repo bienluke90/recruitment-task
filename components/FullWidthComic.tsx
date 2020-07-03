@@ -1,11 +1,14 @@
 import React from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, ViewStyle } from "react-native";
 
 const styles = StyleSheet.create({
   itemContainer: {
-    width: "100%",
+    flex: 1,
+    flexBasis: "100%",
+    margin: "1em",
   },
   fullImage: {
+    display: "flex",
     flex: 1,
     width: "100%",
   },
@@ -17,9 +20,16 @@ interface FullWidthComicProps {
 
 const FullWidthComic: React.FC<FullWidthComicProps> = ({ img }) => {
   return (
-    <View style={styles.itemContainer}>
-      <Image style={styles.fullImage} source={{ uri: img }} />
-    </View>
+    <View
+      style={[
+        styles.itemContainer,
+        {
+          backgroundImage: `url(${img})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
+        } as ViewStyle,
+      ]}
+    ></View>
   );
 };
 

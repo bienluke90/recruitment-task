@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import IconNav from "react-native-vector-icons/EvilIcons";
+import { Actions } from "react-native-router-flux";
 
 const styles = StyleSheet.create({
   headerContainer: {
@@ -10,13 +11,13 @@ const styles = StyleSheet.create({
   headerTitle: {
     flexDirection: "row",
     alignItems: "center",
-    textAlign: "center",
     backgroundColor: "#ddd",
+    boxShadow: "0 0 25px 1px rgba(0, 0, 0, 0.2) inset",
+    position: "relative",
   },
   headerTitleText: {
     textAlign: "center",
     fontSize: 60,
-
     width: "100%",
   },
   headerNav: {
@@ -32,28 +33,46 @@ const styles = StyleSheet.create({
     marginLeft: "auto",
   },
   headerButton: {
+    position: "absolute",
+    left: "1em",
+    paddingLeft: "1em",
     marginRight: "auto",
   },
 });
 
 interface HeaderProps {
   hasBackBtn?: boolean;
+  setImg: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Header: React.FC<HeaderProps> = ({ hasBackBtn }) => {
+const Header: React.FC<HeaderProps> = ({ hasBackBtn = false, setImg }) => {
   return (
     <View style={styles.headerContainer}>
       <View style={styles.headerNav}>
-        <TouchableHighlight>
+        <TouchableHighlight
+          onPress={() => {
+            setImg("");
+          }}
+        >
           <IconNav name="navicon" size={40} color="#222" />
         </TouchableHighlight>
-        <TouchableHighlight style={styles.homeButton}>
+        <TouchableHighlight
+          onPress={() => {
+            setImg("");
+          }}
+          style={styles.homeButton}
+        >
           <Icon name="book-open-variant" size={40} color="#222" />
         </TouchableHighlight>
       </View>
       <View style={styles.headerTitle}>
         {hasBackBtn && (
-          <TouchableHighlight style={styles.headerButton}>
+          <TouchableHighlight
+            onPress={() => {
+              setImg("");
+            }}
+            style={styles.headerButton}
+          >
             <Icon name="keyboard-backspace" size={40} color="#222" />
           </TouchableHighlight>
         )}

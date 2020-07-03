@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 const comics = [
   {
     month: "7",
-    num: 2327,
+    num: 1,
     link: "",
     year: "2020",
     news: "",
@@ -26,7 +26,7 @@ const comics = [
   },
   {
     month: "7",
-    num: 2327,
+    num: 2,
     link: "",
     year: "2020",
     news: "",
@@ -39,7 +39,7 @@ const comics = [
   },
   {
     month: "7",
-    num: 2327,
+    num: 3,
     link: "",
     year: "2020",
     news: "",
@@ -52,7 +52,7 @@ const comics = [
   },
   {
     month: "7",
-    num: 2327,
+    num: 4,
     link: "",
     year: "2020",
     news: "",
@@ -65,7 +65,7 @@ const comics = [
   },
   {
     month: "7",
-    num: 2327,
+    num: 5,
     link: "",
     year: "2020",
     news: "",
@@ -78,7 +78,7 @@ const comics = [
   },
   {
     month: "7",
-    num: 2327,
+    num: 6,
     link: "",
     year: "2020",
     news: "",
@@ -91,7 +91,7 @@ const comics = [
   },
   {
     month: "7",
-    num: 2327,
+    num: 7,
     link: "",
     year: "2020",
     news: "",
@@ -104,7 +104,7 @@ const comics = [
   },
   {
     month: "7",
-    num: 2327,
+    num: 8,
     link: "",
     year: "2020",
     news: "",
@@ -117,22 +117,11 @@ const comics = [
   },
 ];
 
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+interface ComicListProps {
+  setImg: React.Dispatch<React.SetStateAction<string>>;
+}
 
-const ComicList: React.FC = () => {
+const ComicList: React.FC<ComicListProps> = ({ setImg }) => {
   const [comicList, setComicList] = useState<Comic[]>([]);
 
   useEffect(() => {
@@ -140,12 +129,13 @@ const ComicList: React.FC = () => {
       comics.map((c) => ({
         title: c.title,
         img: c.img,
+        id: c.num,
       }))
     );
-  });
+  }, []);
 
   const comicElements = comicList.map((c) => (
-    <Comic title={c.title} img={c.img} />
+    <Comic key={c.id} title={c.title} img={c.img} setImg={setImg} />
   ));
 
   return <ScrollView style={styles.listContainer}>{comicElements}</ScrollView>;

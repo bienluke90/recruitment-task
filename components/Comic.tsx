@@ -6,30 +6,33 @@ import {
   TouchableHighlight,
   Image,
 } from "react-native";
+import { Actions } from "react-native-router-flux";
 
 const styles = StyleSheet.create({
   itemContainer: {
-    flex: 1,
-    flexDirection: "row",
     width: "100%",
     padding: "1em",
     minHeight: "200px",
     marginBottom: "1em",
     backgroundColor: "rgba(0, 0, 0, 0.05)",
+    borderRadius: 5,
   },
-  itemTitleContainer: {
-    flexShrink: 1,
+
+  itemInnerContainer: {
+    flex: 1,
+    flexDirection: "row",
+    flexBasis: "100%",
   },
   itemTitle: {
     flex: 1,
-    fontSize: 40,
+    fontSize: 30,
     whiteSpace: "wrap",
     flexShrink: 1,
     flexWrap: "wrap",
   },
   itemImgContainer: {
     width: "45%",
-    height: "120px",
+    height: "150px",
     marginLeft: "auto",
   },
   itemImage: {
@@ -40,17 +43,24 @@ const styles = StyleSheet.create({
 interface ComicProps {
   title: string;
   img: string;
+  setImg: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Comic: React.FC<ComicProps> = ({ title, img }) => {
+const Comic: React.FC<ComicProps> = ({ title, img, setImg }) => {
   return (
     <View style={styles.itemContainer}>
-      <TouchableHighlight style={styles.itemTitleContainer}>
-        <Text style={styles.itemTitle}>{title}</Text>
+      <TouchableHighlight
+        onPress={() => {
+          setImg(img);
+        }}
+      >
+        <View style={styles.itemInnerContainer}>
+          <Text style={styles.itemTitle}>{title}</Text>
+          <View style={styles.itemImgContainer}>
+            <Image style={styles.itemImage} source={{ uri: img }} />
+          </View>
+        </View>
       </TouchableHighlight>
-      <View style={styles.itemImgContainer}>
-        <Image style={styles.itemImage} source={{ uri: img }} />
-      </View>
     </View>
   );
 };
