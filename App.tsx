@@ -1,12 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
-import Root from "./Views/Root";
+import { StyleSheet, ScrollView, View } from "react-native";
+import Root from "./views/Root";
 
 const App: React.FC = () => {
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <View style={styles.container}>
       <Root />
-    </ScrollView>
+    </View>
   );
 };
 
@@ -15,10 +15,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#555",
     alignSelf: "stretch",
     alignItems: "center",
-    minHeight: "100vh",
+    minHeight: "100%",
     width: "100%",
-    padding: "1em",
-    overflowY: "scroll",
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 25,
+    paddingBottom: 10,
     flexGrow: 1,
   },
 });

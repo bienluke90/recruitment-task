@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import IconNav from "react-native-vector-icons/EvilIcons";
-import { Actions } from "react-native-router-flux";
 
 const styles = StyleSheet.create({
   headerContainer: {
@@ -12,7 +11,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#ddd",
-    boxShadow: "0 0 25px 1px rgba(0, 0, 0, 0.2) inset",
     position: "relative",
   },
   headerTitleText: {
@@ -21,22 +19,30 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   headerNav: {
-    flex: 1,
+    position: "relative",
     flexDirection: "row",
     alignItems: "center",
-    paddingTop: 0,
-    paddingLeft: "0.5em",
-    paddingRight: "0.5em",
-    height: "20px",
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 20,
+    height: 40,
   },
   homeButton: {
-    marginLeft: "auto",
+    position: "absolute",
+    right: 5,
+    top: -5,
+  },
+  listButton: {
+    position: "absolute",
+    left: 5,
+    top: 0,
   },
   headerButton: {
     position: "absolute",
-    left: "1em",
-    paddingLeft: "1em",
-    marginRight: "auto",
+    left: 5,
+    top: 20,
+    paddingLeft: 20,
+    zIndex: 99999999999,
   },
 });
 
@@ -49,32 +55,33 @@ const Header: React.FC<HeaderProps> = ({ hasBackBtn = false, setImg }) => {
   return (
     <View style={styles.headerContainer}>
       <View style={styles.headerNav}>
-        <TouchableHighlight
+        <TouchableOpacity
           onPress={() => {
             setImg("");
           }}
+          style={styles.listButton}
         >
           <IconNav name="navicon" size={40} color="#222" />
-        </TouchableHighlight>
-        <TouchableHighlight
+        </TouchableOpacity>
+        <TouchableOpacity
           onPress={() => {
             setImg("");
           }}
           style={styles.homeButton}
         >
           <Icon name="book-open-variant" size={40} color="#222" />
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
       <View style={styles.headerTitle}>
         {hasBackBtn && (
-          <TouchableHighlight
+          <TouchableOpacity
             onPress={() => {
               setImg("");
             }}
             style={styles.headerButton}
           >
             <Icon name="keyboard-backspace" size={40} color="#222" />
-          </TouchableHighlight>
+          </TouchableOpacity>
         )}
         <Text style={styles.headerTitleText}>XKCD</Text>
       </View>
