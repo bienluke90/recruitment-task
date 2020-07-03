@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, ScrollView, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Root from "./views/Root";
 
 const App: React.FC = () => {

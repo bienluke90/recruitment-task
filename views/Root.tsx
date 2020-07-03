@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, ScrollView, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Header from "../templates/Header";
 import ComicList from "./../templates/ComicsList";
 import FullWidthComic from "../components/FullWidthComic";
